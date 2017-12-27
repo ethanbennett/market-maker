@@ -1,3 +1,6 @@
+import Stats from 'stats-js';
+import { TweenMax, Back, Sine } from 'gsap';
+
 //////////////////////////////
 // Demo Functions
 //////////////////////////////
@@ -319,4 +322,4 @@ var gradients = (function() {
 // Start
 //////////////////////////////
 
-init();
+export default init;
