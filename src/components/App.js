@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
 
 import w3 from '../eth/web3Instance';
 
 class App extends Component {
   render() {
-    console.log(w3.eth.accounts);
+    console.log(w3.eth.accounts.wallet);
     return (
       <div className="App">
         <header className="App-header">
