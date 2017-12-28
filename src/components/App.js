@@ -3,7 +3,6 @@ import './App.scss';
 
 import AccountDetails from './AccountDetails';
 import Metamask from '../services/Metamask';
-import marketMaker from '../eth/marketMaker';
 
 class App extends Component {
   constructor(props) {
@@ -20,7 +19,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(marketMaker);
     return (
       <div className="App">
         <AccountDetails account={this.state.account} />
