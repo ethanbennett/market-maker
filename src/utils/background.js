@@ -22,7 +22,7 @@ function init(showStats) {
   // init
   var svg = document.getElementById('demo');
   tesselation.setup(svg);
-  gradients.setup();  
+  gradients.setup();
 
   var lastTransitionAt,
     transitionDelay = 5500,
@@ -41,7 +41,7 @@ function init(showStats) {
     window.requestAnimationFrame(tick);
   }
   window.requestAnimationFrame(tick);
-  svg.style.visibility = "visible";  
+  svg.style.visibility = 'visible';
 }
 
 //////////////////////////////
