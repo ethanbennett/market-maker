@@ -262,16 +262,16 @@ var gradients = (function() {
     '#12a3b4', // aqua40
     '#00a78f', // teal40
     '#00aa5e', // green40
-    '#81b532', // lime30
-    '#e3bc13', // yellow20
-    '#ffb000', // gold20
-    '#fe8500', // orange30
-    '#fe6100', // peach40
     '#e62325', // red50
     '#dc267f', // magenta50
     '#c22dd5', // purple50
     '#9753e1', // violet50
-    '#5a3ec8'  // indigo60
+    '#5a3ec8', // indigo60
+    '#FF1CAE', // 80s pink
+    '#F5F5F5', // white smoke
+    '#74BBFB', // blue ice
+    '#C0C0C0', // silver
+    '#9F5F9F', // blueviolet
   ];
 
   function assignRandomColors(gradObj) {
