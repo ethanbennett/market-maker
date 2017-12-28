@@ -13,15 +13,17 @@ class App extends Component {
     };
   }
 
-  componentWillMount() {
-    const address = Metamask.setAccount();
+  async componentWillMount() {
+    const address = await Metamask.setAccount();
     this.setState({ account: address });
   }
 
   render() {
+    const { account } = this.state;
+
     return (
       <div className="App">
-        <AccountDetails account={this.state.account} />
+        <AccountDetails account={account} />
       </div>
     );
   }
