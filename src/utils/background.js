@@ -22,7 +22,7 @@ function init(showStats) {
   // init
   var svg = document.getElementById('demo');
   tesselation.setup(svg);
-  gradients.setup();
+  gradients.setup();  
 
   var lastTransitionAt,
     transitionDelay = 5500,
@@ -41,6 +41,7 @@ function init(showStats) {
     window.requestAnimationFrame(tick);
   }
   window.requestAnimationFrame(tick);
+  svg.style.visibility = "visible";  
 }
 
 //////////////////////////////
@@ -352,7 +353,7 @@ var gradients = (function() {
     '#94cebd', // greenish
     '#a56b6b', // burgundy
     '#74BBFB', // blue ice
-    '#C0C0C0', // silver
+    '#F4288E', // bright pink
     '#9F5F9F', // blueviolet
   ];
 

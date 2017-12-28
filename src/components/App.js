@@ -3,6 +3,7 @@ import './App.scss';
 
 import AccountDetails from './AccountDetails';
 import Metamask from '../services/Metamask';
+import logo from '../../public/ethLogo.png';
 
 class App extends Component {
   constructor(props) {
@@ -19,10 +20,12 @@ class App extends Component {
   }
 
   render() {
+    // init();
     const { account } = this.state;
 
     return (
       <div className="App">
+        <img className="eth-logo" src={logo} alt="Oops" />
         <AccountDetails account={account} />
       </div>
     );
