@@ -1,3 +1,10 @@
+@import '~react-md/src/scss/react-md';
+
+$md-primary-color: #173764;
+$md-secondary-color: #5889AF;
+
+@include react-md-everything;
+
 html, body {
   width: 100%;
   height: 100%;

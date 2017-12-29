@@ -12,7 +12,7 @@ img {
 
 .eth-logo {
   margin-top: 80px;
-  margin-left: -144px;
+  margin-left: -145px;
   width: 20%;
 }
 
@@ -21,8 +21,15 @@ h1 {
   z-index: 1;
 }
 
+.exchange-form {
+  position: absolute;
+  z-index: 1;
+  margin-top: 420px;
+  margin-left: 615px;
+}
+
 .account-balance {
-  color: #1A3C69;
+  color: #173764;
   top: 0;
   left: 0;
   right: 0;
