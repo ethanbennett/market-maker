@@ -21,6 +21,8 @@ class AccountDetails extends Component {
 
     if (accountData === 'Loading') {
       return <h1>Waiting for MetaMask...</h1>;
+    } else if (!accountData.address) {
+      return <h1>Please unlock your MetaMask account to continue</h1>
     } else if (accountData.onRinkeby) {
       return <h1>Account Balance: {accountData.balance} ETH</h1>;
     } else {
