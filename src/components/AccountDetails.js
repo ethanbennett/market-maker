@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
 import './App.scss';
 
-import Metamask from '../services/Metamask';
-
 class AccountDetails extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      accountData: {
-        onRinkeby: 'Loading',
-      },
+      accountData: 'Loading',
     };
   }
+
   componentWillReceiveProps(nextProps) {
     if (this.props.accountData !== nextProps.accountData) {
       this.setState({ accountData: nextProps.accountData });
@@ -20,10 +17,12 @@ class AccountDetails extends Component {
   }
 
   validateNetwork() {
-    if (this.state.accountData.onRinkeby === 'Loading') {
+    const { accountData } = this.state;
+
+    if (accountData === 'Loading') {
       return <h1>Waiting for MetaMask...</h1>;
-    } else if (this.state.accountData.onRinkeby) {
-      return <h1>{this.state.accountData.balance}</h1>;
+    } else if (accountData.onRinkeby) {
+      return <h1>Account Balance: {accountData.balance} ETH</h1>;
     } else {
       return (
         <div className="connection-warning">
@@ -33,24 +32,7 @@ class AccountDetails extends Component {
     }
   }
 
-  async renderAccountDetails() {
-    const { account } = this.props;
-
-    if (account) {
-      const balance = await Metamask.checkEthBalance(this.props.account);
-
-      return (
-        <div className="account-balance">
-          <h1>{balance}</h1>
-        </div>
-      );
-    } else {
-      return <div />;
-    }
-  }
-
   render() {
-    console.log(this.state.accountData);
     return <div className="account-details">{this.validateNetwork()}</div>;
   }
 }
