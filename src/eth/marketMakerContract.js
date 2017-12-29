@@ -72,9 +72,9 @@ const marketMakerABI = [
 
 const marketMakerAddress = '0xaf751e0FA3065Aa000B5b9cdaE87E0FFb56358FB';
 
-export const marketMaker = new w3.eth.Contract(
+export const marketMakerContract = new w3.eth.Contract(
   marketMakerABI,
   marketMakerAddress
 );
 
-export default marketMaker;
+export default marketMakerContract;

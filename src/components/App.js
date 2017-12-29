@@ -3,6 +3,7 @@ import './App.scss';
 
 import AccountDetails from './AccountDetails';
 import Metamask from '../services/Metamask';
+import MarketMaker from '../services/MarketMaker';
 import logo from '../../public/ethLogo.png';
 
 class App extends Component {
@@ -22,6 +23,8 @@ class App extends Component {
     if (address && onRinkeby) {
       balance = await Metamask.checkEthBalance(address);
     }
+
+    // MarketMaker.initiate(address);
 
     this.setState({
       accountData: {

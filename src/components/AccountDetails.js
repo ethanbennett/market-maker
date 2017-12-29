@@ -16,26 +16,34 @@ class AccountDetails extends Component {
     }
   }
 
-  validateNetwork() {
+  validateAccount() {
     const { accountData } = this.state;
 
     if (accountData === 'Loading') {
-      return <h1>Waiting for MetaMask...</h1>;
+      return <h1 className="account-balance">Waiting for MetaMask...</h1>;
     } else if (!accountData.address) {
-      return <h1>Please unlock your MetaMask account to continue</h1>
+      return (
+        <h1 className="account-balance">
+          Please unlock your MetaMask account to continue
+        </h1>
+      );
     } else if (accountData.onRinkeby) {
-      return <h1>Account Balance: {accountData.balance} ETH</h1>;
+      return (
+        <h1 className="account-balance">
+          Account Balance: {accountData.balance} ETH
+        </h1>
+      );
     } else {
       return (
-        <div className="connection-warning">
-          <h1>Please connect MetaMask to the Rinkeby network to continue</h1>
-        </div>
+        <h1 className="account-balance">
+          Please connect MetaMask to the Rinkeby network to continue
+        </h1>
       );
     }
   }
 
   render() {
-    return <div className="account-details">{this.validateNetwork()}</div>;
+    return <div className="account-details">{this.validateAccount()}</div>;
   }
 }
 
