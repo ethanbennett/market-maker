@@ -1,5 +1,4 @@
 import marketMakerContract from '../eth/marketMakerContract';
-import w3 from '../eth/web3Instance';
 
 class MarketMaker {
   async initiate(address) {
@@ -14,6 +13,35 @@ class MarketMaker {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  async ethToTokens(amount, address) {
+    let txHash;
+
+    try {
+      txHash = await marketMakerContract.methods.eth_to_tokens().send({
+        from: address,
+        value: amount,
+      });
+    } catch (error) {
+      return error;
+    }
+
+    return txHash;
+  }
+
+  async tokensToEth(amount, address) {
+    let txHash;
+
+    try {
+      txHash = await marketMakerContract.methods.tokens_to_eth(amount).send({
+        from: address,
+      });
+    } catch (error) {
+      return error;
+    }
+
+    return txHash;
   }
 }
 

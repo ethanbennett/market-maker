@@ -16,6 +16,13 @@ img {
   width: 20%;
 }
 
+.metamask-message {
+  font-size: 1.5em;
+  margin-left: -93px;
+  margin-top: 10px;
+  color: #173764;
+}
+
 h1 {
   position: absolute;
   z-index: 1;
@@ -25,7 +32,15 @@ h1 {
   position: absolute;
   z-index: 1;
   margin-top: 420px;
-  margin-left: 615px;
+  margin-left: 490px;
+}
+
+.field-with-button {
+  display: flex;
+}
+
+.confirm-button {
+  margin-top: 32px;
 }
 
 .account-balance {

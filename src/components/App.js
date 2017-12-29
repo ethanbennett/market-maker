@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import './App.scss';
 
 import AccountDetails from './AccountDetails';
 import ExchangeForm from './ExchangeForm';
 import Metamask from '../services/Metamask';
-import MarketMaker from '../services/MarketMaker';
+// import MarketMaker from '../services/MarketMaker';
 import logo from '../../public/ethLogo.png';
+import './App.scss';
 
 class App extends Component {
   constructor(props) {
@@ -43,7 +43,7 @@ class App extends Component {
       <div className="App">
         <img className="eth-logo" src={logo} alt="ethereum" />
         <AccountDetails accountData={accountData} />
-        <ExchangeForm />
+        <ExchangeForm accountData={accountData} />
       </div>
     );
   }

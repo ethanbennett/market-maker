@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import './App.scss';
-
 import { TextField } from 'react-md';
+import { Button } from 'react-md';
+
+import MarketMaker from '../services/MarketMaker';
+import './App.scss';
 
 class ExchangeForm extends Component {
   constructor(props) {
@@ -10,7 +12,17 @@ class ExchangeForm extends Component {
     this.state = {
       ethForm: '',
       pdaForm: '',
+      accountData: {
+        onRinkeby: false,
+      },
+      result: '',
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.accountData !== nextProps.accountData) {
+      this.setState({ accountData: nextProps.accountData });
+    }
   }
 
   updateForms(data, form) {
@@ -22,25 +34,64 @@ class ExchangeForm extends Component {
     console.log(this.state);
   }
 
+  async handleBuy(token) {
+    let result;
+    const { accountData, ethForm, pdaForm } = this.state;
+
+    this.setState({
+      result:
+        'Please use MetaMask to confirm your transaction and check its status.',
+    });
+
+    if (token === 'eth') {
+      await MarketMaker.tokensToEth(ethForm, accountData.address);
+    } else {
+      await MarketMaker.ethToTokens(pdaForm, accountData.address);
+    }
+  }
+
   render() {
+    const { accountData, result } = this.state;
+
     return (
       <div className="exchange-form">
         <div className="text-fields md-grid">
-          <TextField
-            id="eth"
-            label="Buy ETH"
-            type="number"
-            onChange={data => this.updateForms(data, 'eth')}
-            className="md-cell md-cell--bottom"
-          />
-          <TextField
-            id="pda"
-            label="Buy PDA"
-            type="number"
-            onChange={data => this.updateForms(data, 'pda')}
-            className="md-cell md-cell--bottom"
-          />
+          <div className="field-with-button">
+            <TextField
+              id="eth"
+              label="Buy ETH"
+              onChange={data => this.updateForms(data, 'eth')}
+              className="md-cell md-cell--bottom"
+            />
+            <Button
+              raised
+              primary
+              className="confirm-button"
+              disabled={!accountData.onRinkeby}
+              onClick={() => this.handleBuy('eth')}
+            >
+              Confirm
+            </Button>
+          </div>
+          <div className="field-with-button">
+            <TextField
+              id="pda"
+              label="Buy PDA"
+              onChange={data => this.updateForms(data, 'pda')}
+              className="md-cell md-cell--bottom"
+            />
+            <Button
+              raised
+              primary
+              className="confirm-button"
+              disabled={!accountData.onRinkeby}
+              onClick={() => this.handleBuy('pda')}
+            >
+              Confirm
+            </Button>
+          </div>
         </div>
+        <p className="metamask-message">{result}</p>
       </div>
     );
   }
