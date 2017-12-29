@@ -10,23 +10,35 @@ class App extends Component {
     super(props);
 
     this.state = {
-      account: '',
+      accountData: '',
     };
   }
 
   async componentWillMount() {
+    let balance;
     const address = await Metamask.setAccount();
-    this.setState({ account: address });
+    const onRinkeby = await Metamask.checkNetwork();
+
+    if (address && onRinkeby) {
+      balance = await Metamask.checkEthBalance(address);
+    }
+
+    this.setState({
+      accountData: {
+        address: address,
+        onRinkeby: onRinkeby,
+        balance: balance,
+      },
+    });
   }
 
   render() {
-    // init();
-    const { account } = this.state;
+    const { accountData } = this.state;
 
     return (
       <div className="App">
-        <img className="eth-logo" src={logo} alt="Oops" />
-        <AccountDetails account={account} />
+        <img className="eth-logo" src={logo} alt="ethereum" />
+        <AccountDetails accountData={accountData} />
       </div>
     );
   }
