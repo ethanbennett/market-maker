@@ -31,7 +31,6 @@ class ExchangeForm extends Component {
     } else if (form === 'pda') {
       this.setState({ pdaValue: data });
     }
-    console.log(this.state);
   }
 
   async handleBuy(token) {
@@ -45,7 +44,7 @@ class ExchangeForm extends Component {
     if (token === 'eth') {
       await MarketMaker.tokensToEth(ethValue, accountData.address);
     } else {
-      await MarketMaker.ethToTokens(pdaValue * (10 ** 18), accountData.address);
+      await MarketMaker.ethToTokens(pdaValue * 10 ** 18, accountData.address);
     }
   }
 
