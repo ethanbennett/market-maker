@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { ExpansionList, ExpansionPanel } from 'react-md';
+import { ExpansionList, ExpansionPanel, Button } from 'react-md';
 
+import ERC20 from '../services/ERC20';
 import './App.scss';
 
 class GettingStarted extends Component {
@@ -19,6 +20,8 @@ class GettingStarted extends Component {
   }
 
   render() {
+    const { accountData } = this.state;
+
     return (
       <ExpansionList className="getting-started">
         <ExpansionPanel
@@ -26,7 +29,14 @@ class GettingStarted extends Component {
           label="First time here?"
           footer={null}
         >
-          <p>Yo!</p>
+          <Button
+            raised
+            primary
+            className="approve-button"
+            onClick={() => ERC20.approve(accountData.address)}
+          >
+            Allow Panda to Buy and Sell Tokens
+          </Button>
         </ExpansionPanel>
       </ExpansionList>
     );

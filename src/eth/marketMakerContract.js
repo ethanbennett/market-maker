@@ -70,7 +70,7 @@ const marketMakerABI = [
   },
 ];
 
-const marketMakerAddress = '0xaf751e0FA3065Aa000B5b9cdaE87E0FFb56358FB';
+const marketMakerAddress = '0x2328E3132893615fa7E76054415B79cA7eB91c3A';
 
 export const marketMakerContract = new w3.eth.Contract(
   marketMakerABI,

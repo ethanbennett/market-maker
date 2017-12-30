@@ -35,7 +35,6 @@ class ExchangeForm extends Component {
   }
 
   async handleBuy(token) {
-    let result;
     const { accountData, ethForm, pdaForm } = this.state;
 
     this.setState({
