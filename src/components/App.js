@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import AccountDetails from './AccountDetails';
 import ExchangeForm from './ExchangeForm';
+import GettingStarted from './GettingStarted';
 import Metamask from '../services/Metamask';
 // import MarketMaker from '../services/MarketMaker';
 import logo from '../../public/ethLogo.png';
@@ -44,6 +45,7 @@ class App extends Component {
         <img className="eth-logo" src={logo} alt="ethereum" />
         <AccountDetails accountData={accountData} />
         <ExchangeForm accountData={accountData} />
+        <GettingStarted accountData={accountData} />
       </div>
     );
   }

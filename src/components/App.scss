@@ -18,8 +18,8 @@ img {
 
 .metamask-message {
   font-size: 1.5em;
-  margin-left: -93px;
-  margin-top: 10px;
+  margin-left: -110px;
+  margin-top: 3px;
   color: #173764;
 }
 
@@ -32,7 +32,47 @@ h1 {
   position: absolute;
   z-index: 1;
   margin-top: 420px;
-  margin-left: 490px;
+  margin-left: 450px;
+}
+
+.getting-started {
+  position: absolute;
+  z-index: 1;
+  margin-top: 560px;
+  margin-left: 435px;
+  width: 580px;
+  color: #173764;
+}
+
+.material-icons {
+  color: #5889AF;
+}
+
+.md-floating-label {
+  color: #5889AF;
+}
+
+.md-btn {
+  margin-left: 20px;
+}
+
+.md-divider {
+  color: #5889AF !important;
+  width: 110px;  
+}
+
+.panel {
+  background: transparent;
+}
+
+p {
+  color: #173764;
+}
+
+.md-text {
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 1.2em;
+  color: #173764;  
 }
 
 .field-with-button {
@@ -40,7 +80,7 @@ h1 {
 }
 
 .confirm-button {
-  margin-top: 32px;
+  margin-top: 36px;
 }
 
 .account-balance {

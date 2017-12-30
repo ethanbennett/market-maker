@@ -59,7 +59,7 @@ class ExchangeForm extends Component {
           <div className="field-with-button">
             <TextField
               id="eth"
-              label="Buy ETH"
+              label="Amount in PDA"
               onChange={data => this.updateForms(data, 'eth')}
               className="md-cell md-cell--bottom"
             />
@@ -70,13 +70,13 @@ class ExchangeForm extends Component {
               disabled={!accountData.onRinkeby}
               onClick={() => this.handleBuy('eth')}
             >
-              Confirm
+              Buy Eth
             </Button>
           </div>
           <div className="field-with-button">
             <TextField
               id="pda"
-              label="Buy PDA"
+              label="Amount in ETH"
               onChange={data => this.updateForms(data, 'pda')}
               className="md-cell md-cell--bottom"
             />
@@ -87,7 +87,7 @@ class ExchangeForm extends Component {
               disabled={!accountData.onRinkeby}
               onClick={() => this.handleBuy('pda')}
             >
-              Confirm
+              Buy PDA
             </Button>
           </div>
         </div>
