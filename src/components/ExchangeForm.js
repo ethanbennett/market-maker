@@ -10,8 +10,8 @@ class ExchangeForm extends Component {
     super(props);
 
     this.state = {
-      ethForm: '',
-      pdaForm: '',
+      ethValue: '',
+      pdaValue: '',
       accountData: {
         onRinkeby: false,
       },
@@ -27,15 +27,15 @@ class ExchangeForm extends Component {
 
   updateForms(data, form) {
     if (form === 'eth') {
-      this.setState({ ethForm: data });
+      this.setState({ ethValue: data });
     } else if (form === 'pda') {
-      this.setState({ pdaForm: data });
+      this.setState({ pdaValue: data });
     }
     console.log(this.state);
   }
 
   async handleBuy(token) {
-    const { accountData, ethForm, pdaForm } = this.state;
+    const { accountData, ethValue, pdaValue } = this.state;
 
     this.setState({
       result:
@@ -43,9 +43,9 @@ class ExchangeForm extends Component {
     });
 
     if (token === 'eth') {
-      await MarketMaker.tokensToEth(ethForm, accountData.address);
+      await MarketMaker.tokensToEth(ethValue, accountData.address);
     } else {
-      await MarketMaker.ethToTokens(pdaForm, accountData.address);
+      await MarketMaker.ethToTokens(pdaValue * (10 ** 18), accountData.address);
     }
   }
 
