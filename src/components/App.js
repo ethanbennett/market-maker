@@ -48,11 +48,15 @@ class App extends Component {
         tokenBalance: tokenBalance,
       },
       marketState: {
-        invariant: invariant,
-        totalEth: totalEth,
-        totalTokens: totalTokens,
+        invariant: this.convertData(invariant),
+        totalEth: this.convertData(totalEth),
+        totalTokens: this.convertData(totalTokens),
       },
     });
+  }
+
+  convertData(number) {
+    return number / 10 ** 18;
   }
 
   render() {

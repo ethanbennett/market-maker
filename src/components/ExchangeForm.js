@@ -49,7 +49,7 @@ class ExchangeForm extends Component {
   }
 
   validateInput(token) {
-    const { ethValue, tokenValue } = this.state;
+    const { ethValue } = this.state;
     let result;
 
     if (token === 'eth' && ethValue % 1 !== 0) {
