@@ -11,11 +11,11 @@ class ExchangeForm extends Component {
 
     this.state = {
       ethValue: '',
-      pdaValue: '',
+      tokenValue: '',
       accountData: {
         onRinkeby: false,
       },
-      result: '',
+      marketState: {},
     };
   }
 
@@ -23,18 +23,22 @@ class ExchangeForm extends Component {
     if (this.props.accountData !== nextProps.accountData) {
       this.setState({ accountData: nextProps.accountData });
     }
+
+    if (this.props.marketState !== nextProps.marketState) {
+      this.setState({ marketState: nextProps.marketState });
+    }
   }
 
   updateForms(data, form) {
     if (form === 'eth') {
       this.setState({ ethValue: data });
-    } else if (form === 'pda') {
-      this.setState({ pdaValue: data });
+    } else if (form === 'token') {
+      this.setState({ tokenValue: data });
     }
   }
 
   async handleBuy(token) {
-    const { accountData, ethValue, pdaValue } = this.state;
+    const { accountData, ethValue, tokenValue } = this.state;
 
     this.setState({
       result:
@@ -44,7 +48,7 @@ class ExchangeForm extends Component {
     if (token === 'eth') {
       await MarketMaker.tokensToEth(ethValue, accountData.address);
     } else {
-      await MarketMaker.ethToTokens(pdaValue * 10 ** 18, accountData.address);
+      await MarketMaker.ethToTokens(tokenValue * 10 ** 18, accountData.address);
     }
   }
 
@@ -57,7 +61,7 @@ class ExchangeForm extends Component {
           <div className="field-with-button">
             <TextField
               id="eth"
-              label="Amount in PDA"
+              label="Amount in POLY"
               onChange={data => this.updateForms(data, 'eth')}
               className="md-cell md-cell--bottom"
             />
@@ -73,9 +77,9 @@ class ExchangeForm extends Component {
           </div>
           <div className="field-with-button">
             <TextField
-              id="pda"
+              id="token"
               label="Amount in ETH"
-              onChange={data => this.updateForms(data, 'pda')}
+              onChange={data => this.updateForms(data, 'token')}
               className="md-cell md-cell--bottom"
             />
             <Button
@@ -83,9 +87,9 @@ class ExchangeForm extends Component {
               primary
               className="confirm-button"
               disabled={!accountData.onRinkeby}
-              onClick={() => this.handleBuy('pda')}
+              onClick={() => this.handleBuy('token')}
             >
-              Buy PDA
+              Buy POLY
             </Button>
           </div>
         </div>

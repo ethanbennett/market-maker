@@ -23,7 +23,7 @@ class Metamask {
     }
   }
 
-  async checkEthBalance(userAddress) {
+  async getEthBalance(userAddress) {
     try {
       const balance = await w3.eth.getBalance(userAddress);
       const valueInEth = balance / 10 ** 18;

@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 import AccountDetails from './AccountDetails';
 import ExchangeForm from './ExchangeForm';
 import GettingStarted from './GettingStarted';
+import ERC20 from '../services/ERC20';
+import MarketMaker from '../services/MarketMaker';
 import Metamask from '../services/Metamask';
 import logo from '../../public/ethLogo.png';
 import './App.scss';
-
-import MarketMaker from '../services/MarketMaker';
 
 class App extends Component {
   constructor(props) {
@@ -20,12 +20,14 @@ class App extends Component {
   }
 
   async componentWillMount() {
-    let balance;
+    let ethBalance;
+    let tokenBalance;
     const address = await Metamask.setAccount();
     const onRinkeby = await Metamask.checkNetwork();
 
     if (address && onRinkeby) {
-      balance = await Metamask.checkEthBalance(address);
+      ethBalance = await Metamask.getEthBalance(address);
+      tokenBalance = await ERC20.getTokenBalance(address);
     }
 
     const invariant = await MarketMaker.getInvariant();
@@ -36,7 +38,8 @@ class App extends Component {
       accountData: {
         address: address,
         onRinkeby: onRinkeby,
-        balance: balance,
+        ethBalance: ethBalance,
+        tokenBalance: tokenBalance,
       },
       marketState: {
         invariant: invariant,
@@ -47,13 +50,13 @@ class App extends Component {
   }
 
   render() {
-    const { accountData } = this.state;
+    const { accountData, marketState } = this.state;
 
     return (
       <div className="App">
         <img className="eth-logo" src={logo} alt="ethereum" />
         <AccountDetails accountData={accountData} />
-        <ExchangeForm accountData={accountData} />
+        <ExchangeForm accountData={accountData} marketState={marketState} />
         <GettingStarted accountData={accountData} />
       </div>
     );

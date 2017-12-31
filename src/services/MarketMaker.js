@@ -1,5 +1,5 @@
-import { marketMakerContract } from '../eth/marketMakerContract';
 import { erc20Address } from '../eth/erc20Contract';
+import { marketMakerContract } from '../eth/marketMakerContract';
 
 class MarketMaker {
   async initiate(address) {
