@@ -11,22 +11,30 @@ class MarketMaker {
   }
 
   async ethToTokens(amount, address) {
-    return await marketMakerContract.methods.eth_to_tokens().send({
-      from: address,
-      value: amount,
-    },
-    function(error, txHash) {
-      console.log({ txHash: txHash, error: error });
-    });
+    try {
+      return await marketMakerContract.methods.eth_to_tokens().send({
+        from: address,
+        value: amount,
+      },
+      function(error, txHash) {
+        console.log({ txHash: txHash, error: error });
+      });
+    } catch (error) {
+      return error;
+    }
   }
 
   async tokensToEth(amount, address) {
-    return await marketMakerContract.methods.tokens_to_eth(amount).send({
-      from: address,
-    },
-    function(error, txHash) {
-      console.log({ txHash: txHash, error: error });
-    });
+    try {
+      return await marketMakerContract.methods.tokens_to_eth(amount).send({
+        from: address,
+      },
+      function(error, txHash) {
+        console.log({ txHash: txHash, error: error });
+      });
+    } catch (error) {
+      return error;
+    }
   }
 
   async getInvariant() {

@@ -30,9 +30,15 @@ class App extends Component {
       tokenBalance = await ERC20.getTokenBalance(address);
     }
 
-    const invariant = await MarketMaker.getInvariant();
-    const totalEth = await MarketMaker.getTotalEthQuantity();
-    const totalTokens = await MarketMaker.getTotalTokenQuantity();
+    let invariant;
+    let totalEth;
+    let totalTokens;
+
+    if (onRinkeby) {
+      invariant = await MarketMaker.getInvariant();
+      totalEth = await MarketMaker.getTotalEthQuantity();
+      totalTokens = await MarketMaker.getTotalTokenQuantity();
+    }
 
     this.setState({
       accountData: {

@@ -52,6 +52,11 @@ h1 {
   color: #5889AF;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  display: none;
+}
+
 .md-btn {
   margin-left: 20px;
 }

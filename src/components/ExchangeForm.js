@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { TextField } from 'react-md';
-import { Button } from 'react-md';
+import { Button, TextField } from 'react-md';
 
 import MarketMaker from '../services/MarketMaker';
 import './App.scss';
@@ -40,10 +39,7 @@ class ExchangeForm extends Component {
   async handleBuy(token) {
     const { accountData, ethValue, tokenValue } = this.state;
 
-    this.setState({
-      result:
-        'Please use MetaMask to confirm your transaction and check its status.',
-    });
+    this.validateInput(token);
 
     if (token === 'eth') {
       await MarketMaker.tokensToEth(ethValue, accountData.address);
@@ -52,45 +48,72 @@ class ExchangeForm extends Component {
     }
   }
 
+  validateInput(token) {
+    const { ethValue, tokenValue } = this.state;
+    let result;
+
+    if (token === 'eth' && ethValue % 1 !== 0) {
+      result =
+        'Please use whole numbers; partial token sales are not yet supported.';
+    } else {
+      result =
+        'Please use MetaMask to confirm your transaction and check its status.';
+    }
+
+    this.setState({
+      result: result,
+    });
+  }
+
+  renderRates(token) {}
+
   render() {
     const { accountData, result } = this.state;
 
     return (
       <div className="exchange-form">
         <div className="text-fields md-grid">
-          <div className="field-with-button">
-            <TextField
-              id="eth"
-              label="Amount in POLY"
-              onChange={data => this.updateForms(data, 'eth')}
-              className="md-cell md-cell--bottom"
-            />
-            <Button
-              raised
-              primary
-              className="confirm-button"
-              disabled={!accountData.onRinkeby}
-              onClick={() => this.handleBuy('eth')}
-            >
-              Buy Eth
-            </Button>
+          <div className="eth-block">
+            <div className="field-with-button">
+              <TextField
+                id="eth"
+                type="number"
+                label="Amount in POLY"
+                onChange={data => this.updateForms(data, 'eth')}
+                className="md-cell md-cell--bottom"
+              />
+              <Button
+                raised
+                primary
+                className="confirm-button"
+                disabled={!accountData.onRinkeby || !accountData.address}
+                onClick={() => this.handleBuy('eth')}
+              >
+                Buy Eth
+              </Button>
+            </div>
+            <div className="rates" />
           </div>
-          <div className="field-with-button">
-            <TextField
-              id="token"
-              label="Amount in ETH"
-              onChange={data => this.updateForms(data, 'token')}
-              className="md-cell md-cell--bottom"
-            />
-            <Button
-              raised
-              primary
-              className="confirm-button"
-              disabled={!accountData.onRinkeby}
-              onClick={() => this.handleBuy('token')}
-            >
-              Buy POLY
-            </Button>
+          <div className="token-block">
+            <div className="field-with-button">
+              <TextField
+                id="token"
+                type="number"
+                label="Amount in ETH"
+                onChange={data => this.updateForms(data, 'token')}
+                className="md-cell md-cell--bottom"
+              />
+              <Button
+                raised
+                primary
+                className="confirm-button"
+                disabled={!accountData.onRinkeby || !accountData.address}
+                onClick={() => this.handleBuy('token')}
+              >
+                Buy POLY
+              </Button>
+            </div>
+            <div className="rates" />
           </div>
         </div>
         <p className="metamask-message">{result}</p>
