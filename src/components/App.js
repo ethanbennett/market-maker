@@ -50,7 +50,7 @@ class App extends Component {
       marketState: {
         invariant: this.convertData(invariant),
         totalEth: this.convertData(totalEth),
-        totalTokens: this.convertData(totalTokens),
+        totalTokens: parseInt(totalTokens, 10),
       },
     });
   }

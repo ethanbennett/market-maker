@@ -24,7 +24,7 @@ class AccountDetails extends Component {
     } else if (!accountData.address) {
       return (
         <h1 className="account-balance">
-          Please unlock your MetaMask account to continue.
+          Please unlock your MetaMask account and refresh to continue.
         </h1>
       );
     } else if (accountData.onRinkeby) {

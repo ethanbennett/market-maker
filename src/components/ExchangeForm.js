@@ -14,7 +14,14 @@ class ExchangeForm extends Component {
       accountData: {
         onRinkeby: false,
       },
-      marketState: {},
+      marketState: {
+        totalEth: 0,
+        totalTokens: 0,
+        invariant: 0,
+      },
+      fee: 0,
+      netEth: 0,
+      netTokens: 0,
     };
   }
 
@@ -28,11 +35,13 @@ class ExchangeForm extends Component {
     }
   }
 
-  updateForms(data, form) {
+  updateForms(value, form) {
     if (form === 'eth') {
-      this.setState({ ethValue: data });
+      this.setState({ ethValue: value });
+      this.setEthRate(value);
     } else if (form === 'token') {
-      this.setState({ tokenValue: data });
+      this.setState({ tokenValue: value });
+      this.setTokenRate(value);
     }
   }
 
@@ -65,7 +74,61 @@ class ExchangeForm extends Component {
     });
   }
 
-  renderRates(token) {}
+  setEthRate(value) {
+    const { invariant, totalTokens, totalEth } = this.state.marketState;
+    const newTotalEth = invariant / (totalTokens + value);
+    const netEth = totalEth - newTotalEth;
+
+    return this.setState({ netEth: netEth.toFixed(4) });
+  }
+
+  setTokenRate(value) {
+    const { invariant, totalTokens, totalEth } = this.state.marketState;
+    const newTotalTokens = invariant / (totalEth + value);
+    const netTokens = totalTokens - newTotalTokens;
+    const fee = value / 500;
+
+    return this.setState({ fee: fee, netTokens: netTokens.toFixed(4) });
+  }
+
+  renderEthRates() {
+    let netEth;
+    const { totalEth, invariant } = this.state.marketState;
+
+    if (this.state.netEth === 'NaN') {
+      netEth = 0;
+    } else {
+      netEth = this.state.netEth;
+    }
+
+    return (
+      <div>
+        <p>Net ETH: Approximately {netEth}</p>
+        <p>Total ETH Quantity: {totalEth}</p>
+        <p>Invariant: {invariant}</p>
+      </div>
+    );
+  }
+
+  renderTokenRates() {
+    let netTokens;
+    const { totalTokens } = this.state.marketState;
+    const { fee } = this.state;
+
+    if (this.state.netTokens === 'NaN') {
+      netTokens = 0;
+    } else {
+      netTokens = this.state.netTokens;
+    }
+
+    return (
+      <div>
+        <p>Net POLY: Approximately {netTokens}</p>
+        <p>Total POLY Quantity: {totalTokens}</p>
+        <p>Fee: {fee} ETH</p>
+      </div>
+    );
+  }
 
   render() {
     const { accountData, result } = this.state;
@@ -79,7 +142,7 @@ class ExchangeForm extends Component {
                 id="eth"
                 type="number"
                 label="Amount in POLY"
-                onChange={data => this.updateForms(data, 'eth')}
+                onChange={value => this.updateForms(parseInt(value, 10), 'eth')}
                 className="md-cell md-cell--bottom"
               />
               <Button
@@ -92,7 +155,7 @@ class ExchangeForm extends Component {
                 Buy Eth
               </Button>
             </div>
-            <div className="rates" />
+            <div className="rates">{this.renderEthRates()}</div>
           </div>
           <div className="token-block">
             <div className="field-with-button">
@@ -100,7 +163,8 @@ class ExchangeForm extends Component {
                 id="token"
                 type="number"
                 label="Amount in ETH"
-                onChange={data => this.updateForms(data, 'token')}
+                onChange={value =>
+                  this.updateForms(parseInt(value, 10), 'token')}
                 className="md-cell md-cell--bottom"
               />
               <Button
@@ -113,7 +177,7 @@ class ExchangeForm extends Component {
                 Buy POLY
               </Button>
             </div>
-            <div className="rates" />
+            <div className="rates">{this.renderTokenRates()}</div>
           </div>
         </div>
         <p className="metamask-message">{result}</p>
