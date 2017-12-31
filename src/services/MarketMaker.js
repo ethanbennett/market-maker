@@ -28,6 +28,18 @@ class MarketMaker {
       console.log({ txHash: txHash, error: error });
     });
   }
+
+  async getInvariant() {
+    return await marketMakerContract.methods.get_invariant().call();
+  }
+
+  async getTotalEthQuantity() {
+    return await marketMakerContract.methods.get_total_eth_qty().call();
+  }
+
+  async getTotalTokenQuantity() {
+    return await marketMakerContract.methods.get_total_token_qty().call();
+  }
 }
 
 export default new MarketMaker();

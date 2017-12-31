@@ -7,12 +7,15 @@ import Metamask from '../services/Metamask';
 import logo from '../../public/ethLogo.png';
 import './App.scss';
 
+import MarketMaker from '../services/MarketMaker';
+
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       accountData: '',
+      marketState: '',
     };
   }
 
@@ -25,11 +28,20 @@ class App extends Component {
       balance = await Metamask.checkEthBalance(address);
     }
 
+    const invariant = await MarketMaker.getInvariant();
+    const totalEth = await MarketMaker.getTotalEthQuantity();
+    const totalTokens = await MarketMaker.getTotalTokenQuantity();
+
     this.setState({
       accountData: {
         address: address,
         onRinkeby: onRinkeby,
         balance: balance,
+      },
+      marketState: {
+        invariant: invariant,
+        totalEth: totalEth,
+        totalTokens: totalTokens,
       },
     });
   }
