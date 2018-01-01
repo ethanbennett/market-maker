@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ExpansionList, ExpansionPanel, Button } from 'react-md';
+import { ExpansionList, ExpansionPanel, Button, TextField } from 'react-md';
 
 import ERC20 from '../services/ERC20';
 import './App.scss';
@@ -10,6 +10,7 @@ class GettingStarted extends Component {
 
     this.state = {
       accountData: {},
+      allowance: 0,
     };
   }
 
@@ -19,8 +20,14 @@ class GettingStarted extends Component {
     }
   }
 
+  handleAllowance(value) {
+    const allowance = value * 10 ** 18;
+
+    this.setState({ allowance: allowance });
+  }
+
   render() {
-    const { accountData } = this.state;
+    const { accountData, allowance } = this.state;
 
     return (
       <ExpansionList className="getting-started">
@@ -29,14 +36,23 @@ class GettingStarted extends Component {
           label="First time here?"
           footer={null}
         >
-          <Button
-            raised
-            primary
-            className="approve-button"
-            onClick={() => ERC20.approve(accountData.address)}
-          >
-            Allow Panda to Buy and Sell Tokens
-          </Button>
+          <div className="approve-block md-grid">
+            <TextField
+              id="approve"
+              type="number"
+              label="Amount in ETH"
+              onChange={value => this.handleAllowance(parseInt(value, 10))}
+              className="md-cell md-cell-bottom"
+            />
+            <Button
+              raised
+              primary
+              className="approve-button"
+              onClick={() => ERC20.approve(accountData.address, allowance)}
+            >
+              Allow
+            </Button>
+          </div>
         </ExpansionPanel>
       </ExpansionList>
     );

@@ -2,10 +2,11 @@ import { erc20Contract } from '../eth/erc20Contract';
 import { marketMakerAddress } from '../eth/marketMakerContract';
 
 class ERC20 {
-  async approve(userAddress) {
+  async approve(userAddress, allowance) {
+    console.log(allowance);
     try {
       return await erc20Contract.methods
-        .approve(marketMakerAddress, 2000000)
+        .approve(marketMakerAddress, allowance)
         .send({ from: userAddress }, function(error, txHash) {
           console.log({ txHash: txHash, error: error });
         });
