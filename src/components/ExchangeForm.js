@@ -93,19 +93,33 @@ class ExchangeForm extends Component {
 
   renderEthRates() {
     let netEth;
-    const { totalEth, invariant } = this.state.marketState;
+    let invariant;
+    let totalEth;
+    const { marketState } = this.state;
 
-    if (this.state.netEth === 'NaN') {
+    if (isNaN(this.state.netEth)) {
       netEth = 0;
     } else {
       netEth = this.state.netEth;
     }
 
+    if (isNaN(marketState.invariant)) {
+      invariant = 0;
+    } else {
+      invariant = marketState.invariant;
+    }
+
+    if (isNaN(marketState.totalEth)) {
+      totalEth = 0;
+    } else {
+      totalEth = marketState.totalEth;
+    }
+
     return (
-      <div>
-        <p>Net ETH: Approximately {netEth}</p>
-        <p>Total ETH Quantity: {totalEth}</p>
-        <p>Invariant: {invariant}</p>
+      <div className="rates">
+        <p><strong>Net ETH:</strong> Approximately {netEth}</p>
+        <p><strong>Total ETH Quantity:</strong> {totalEth}</p>
+        <p><strong>Invariant:</strong> {invariant}</p>
       </div>
     );
   }
@@ -113,25 +127,32 @@ class ExchangeForm extends Component {
   renderTokenRates() {
     let netTokens;
     let fee;
-    const { totalTokens } = this.state.marketState;
+    let totalTokens;
+    const { marketState } = this.state;
 
-    if (this.state.netTokens === 'NaN') {
+    if (isNaN(this.state.netTokens)) {
       netTokens = 0;
     } else {
       netTokens = this.state.netTokens;
     }
 
-    if (this.state.fee === 'NaN') {
+    if (isNaN(this.state.fee)) {
       fee = 0;
     } else {
       fee = this.state.fee;
     }
 
+    if (isNaN(marketState.totalTokens)) {
+      totalTokens = 0;
+    } else {
+      totalTokens = marketState.totalTokens;
+    }
+
     return (
-      <div>
-        <p>Net POLY: Approximately {netTokens}</p>
-        <p>Total POLY Quantity: {totalTokens}</p>
-        <p>Fee: {fee} ETH</p>
+      <div className="rates">
+        <p><strong>Net POLY:</strong> Approximately {netTokens}</p>
+        <p><strong>Total POLY Quantity:</strong> {totalTokens}</p>
+        <p><strong>Fee:</strong> {fee} ETH</p>
       </div>
     );
   }

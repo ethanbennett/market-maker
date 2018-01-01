@@ -23,14 +23,14 @@ class AccountDetails extends Component {
       return <h1 className="account-balance">Waiting for MetaMask...</h1>;
     } else if (!accountData.address) {
       return (
-        <h1 className="account-balance">
+        <h1 className="account-balance locked">
           Please unlock your MetaMask account and refresh to continue.
         </h1>
       );
     } else if (accountData.onRinkeby) {
       return (
-        <h1 className="account-balance">
-          {accountData.ethBalance} ETH /// {accountData.tokenBalance} POLY
+        <h1 className="account-balance unlocked">
+          Account Balances: {accountData.ethBalance} ETH /// {accountData.tokenBalance} POLY
         </h1>
       );
     } else {
