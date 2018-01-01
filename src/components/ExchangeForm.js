@@ -50,6 +50,11 @@ class ExchangeForm extends Component {
 
     this.validateInput(token);
 
+    this.setState({
+      result:
+        'Please use MetaMask to confirm your transaction and check its status.',
+    });
+
     if (token === 'eth') {
       await MarketMaker.tokensToEth(ethValue, accountData.address);
     } else {
@@ -117,9 +122,15 @@ class ExchangeForm extends Component {
 
     return (
       <div className="rates">
-        <p><strong>Net ETH:</strong> Approximately {netEth}</p>
-        <p><strong>Total ETH Quantity:</strong> {totalEth}</p>
-        <p><strong>Invariant:</strong> {invariant}</p>
+        <p>
+          <strong>Net ETH:</strong> Approximately {netEth}
+        </p>
+        <p>
+          <strong>Total ETH Quantity:</strong> {totalEth}
+        </p>
+        <p>
+          <strong>Invariant:</strong> {invariant}
+        </p>
       </div>
     );
   }
@@ -150,9 +161,15 @@ class ExchangeForm extends Component {
 
     return (
       <div className="rates">
-        <p><strong>Net POLY:</strong> Approximately {netTokens}</p>
-        <p><strong>Total POLY Quantity:</strong> {totalTokens}</p>
-        <p><strong>Fee:</strong> {fee} ETH</p>
+        <p>
+          <strong>Net POLY:</strong> Approximately {netTokens}
+        </p>
+        <p>
+          <strong>Total POLY Quantity:</strong> {totalTokens}
+        </p>
+        <p>
+          <strong>Fee:</strong> {fee} ETH
+        </p>
       </div>
     );
   }

@@ -11,27 +11,38 @@ img {
 }
 
 .eth-logo {
-  margin-top: 20px;
+  margin-top: 10px;
   margin-left: -145px;
   width: 20%;
 }
 
+.approve-field {
+  padding-bottom: -50px;
+}
+
+.approve-button {
+  margin-bottom: 10px;
+  margin-right: -10px;
+}
+
 .metamask-message {
-  font-size: 1.5em;
-  margin-left: -110px;
-  margin-top: 3px;
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-left: -90px;
+  margin-top: -14px;
   color: #173764;
 }
 
 h1 {
   position: absolute;
   z-index: 1;
+  font-family: "Libre Franklin", sans-serif;
 }
 
 .exchange-form {
   position: absolute;
   z-index: 1;
-  margin-top: 305px;
+  margin-top: 285px;
   margin-left: 355px;
 }
 
@@ -42,10 +53,11 @@ h1 {
 .getting-started {
   position: absolute;
   z-index: 1;
-  margin-top: 560px;
-  margin-left: 435px;
+  margin-top: 470px;
+  margin-left: 345px;
   width: 580px;
   color: #173764;
+  font-family: "Libre Franklin", sans-serif;
 }
 
 .material-icons {
@@ -81,6 +93,7 @@ input[type=number] {
 
 p {
   color: #173764;
+  font-family: "Libre Franklin", sans-serif;
 }
 
 .md-text {
@@ -103,7 +116,7 @@ p {
   left: 0;
   right: 0;
   bottom: 0;
-  margin-top: 285px;
+  margin-top: 265px;
   font-size: 1.7em;
 }
 

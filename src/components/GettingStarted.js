@@ -10,7 +10,6 @@ class GettingStarted extends Component {
 
     this.state = {
       accountData: {},
-      allowance: 0,
     };
   }
 
@@ -20,14 +19,8 @@ class GettingStarted extends Component {
     }
   }
 
-  handleAllowance(value) {
-    const allowance = value * 10 ** 18;
-
-    this.setState({ allowance: allowance });
-  }
-
   render() {
-    const { accountData, allowance } = this.state;
+    const { accountData } = this.state;
 
     return (
       <ExpansionList className="getting-started">
@@ -36,23 +29,22 @@ class GettingStarted extends Component {
           label="First time here?"
           footer={null}
         >
-          <div className="approve-block md-grid">
-            <TextField
-              id="approve"
-              type="number"
-              label="Amount in ETH"
-              onChange={value => this.handleAllowance(parseInt(value, 10))}
-              className="md-cell md-cell-bottom"
-            />
-            <Button
-              raised
-              primary
-              className="approve-button"
-              onClick={() => ERC20.approve(accountData.address, allowance)}
-            >
-              Allow
-            </Button>
-          </div>
+          <p>
+            Panda Exchange interacts with a market maker smart contract that was
+            written in Vyper and deployed on the Rinkeby test network. Click
+            below to allow the contract to exchange tokens on your behalf. If
+            your transaction fails, you likely need to approve again to allow
+            for more transactions.
+          </p>
+          <br />
+          <Button
+            raised
+            primary
+            className="approve-button"
+            onClick={() => ERC20.approve(accountData.address)}
+          >
+            Allow Panda to Buy and Sell Tokens
+          </Button>
         </ExpansionPanel>
       </ExpansionList>
     );

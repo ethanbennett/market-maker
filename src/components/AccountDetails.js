@@ -30,7 +30,8 @@ class AccountDetails extends Component {
     } else if (accountData.onRinkeby) {
       return (
         <h1 className="account-balance unlocked">
-          Account Balances: {accountData.ethBalance} ETH /// {accountData.tokenBalance} POLY
+          Account Balances: {accountData.ethBalance} ETH ///{' '}
+          {accountData.tokenBalance} POLY
         </h1>
       );
     } else {
