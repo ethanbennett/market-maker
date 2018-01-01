@@ -112,13 +112,19 @@ class ExchangeForm extends Component {
 
   renderTokenRates() {
     let netTokens;
+    let fee;
     const { totalTokens } = this.state.marketState;
-    const { fee } = this.state;
 
     if (this.state.netTokens === 'NaN') {
       netTokens = 0;
     } else {
       netTokens = this.state.netTokens;
+    }
+
+    if (this.state.fee === 'NaN') {
+      fee = 0;
+    } else {
+      fee = this.state.fee;
     }
 
     return (
