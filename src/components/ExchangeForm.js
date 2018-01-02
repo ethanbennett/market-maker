@@ -25,6 +25,8 @@ class ExchangeForm extends Component {
     };
   }
 
+  // Add flash message timer
+
   componentWillReceiveProps(nextProps) {
     if (this.props.accountData !== nextProps.accountData) {
       this.setState({ accountData: nextProps.accountData });
@@ -179,50 +181,47 @@ class ExchangeForm extends Component {
 
     return (
       <div className="exchange-form">
-        <div className="text-fields md-grid">
-          <div className="eth-block">
-            <div className="field-with-button">
-              <TextField
-                id="eth"
-                type="number"
-                label="Amount in POLY"
-                onChange={value => this.updateForms(parseInt(value, 10), 'eth')}
-                className="md-cell md-cell--bottom"
-              />
-              <Button
-                raised
-                primary
-                className="confirm-button"
-                disabled={!accountData.onRinkeby || !accountData.address}
-                onClick={() => this.handleBuy('eth')}
-              >
-                Buy Eth
-              </Button>
-            </div>
-            <div className="rates">{this.renderEthRates()}</div>
+        <div className="eth-block">
+          <div className="field-with-button">
+            <TextField
+              id="eth"
+              type="number"
+              label="Amount in POLY"
+              onChange={value => this.updateForms(parseInt(value, 10), 'eth')}
+              className="md-cell md-cell--bottom"
+            />
+            <Button
+              raised
+              primary
+              className="confirm-button"
+              disabled={!accountData.onRinkeby || !accountData.address}
+              onClick={() => this.handleBuy('eth')}
+            >
+              Buy Eth
+            </Button>
           </div>
-          <div className="token-block">
-            <div className="field-with-button">
-              <TextField
-                id="token"
-                type="number"
-                label="Amount in ETH"
-                onChange={value =>
-                  this.updateForms(parseInt(value, 10), 'token')}
-                className="md-cell md-cell--bottom"
-              />
-              <Button
-                raised
-                primary
-                className="confirm-button"
-                disabled={!accountData.onRinkeby || !accountData.address}
-                onClick={() => this.handleBuy('token')}
-              >
-                Buy POLY
-              </Button>
-            </div>
-            <div className="rates">{this.renderTokenRates()}</div>
+          <div className="rates">{this.renderEthRates()}</div>
+        </div>
+        <div className="token-block">
+          <div className="field-with-button">
+            <TextField
+              id="token"
+              type="number"
+              label="Amount in ETH"
+              onChange={value => this.updateForms(parseInt(value, 10), 'token')}
+              className="md-cell md-cell--bottom"
+            />
+            <Button
+              raised
+              primary
+              className="confirm-button"
+              disabled={!accountData.onRinkeby || !accountData.address}
+              onClick={() => this.handleBuy('token')}
+            >
+              Buy POLY
+            </Button>
           </div>
+          <div className="rates">{this.renderTokenRates()}</div>
         </div>
         <p className="metamask-message">{result}</p>
       </div>

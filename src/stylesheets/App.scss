@@ -11,27 +11,36 @@ img {
 }
 
 .eth-logo {
-  margin-top: 10px;
-  margin-left: -145px;
-  width: 20%;
+  // margin-top: 10px;
+  // margin-left: -145px;
+  // width: 20%;
+  width: 40%;
+  margin-top: 50px;
 }
 
-.approve-field {
-  padding-bottom: -50px;
-}
-
-.approve-button {
-  margin-bottom: 10px;
-  margin-right: -10px;
-}
-
-.metamask-message {
-  font-size: 1.1em;
-  font-weight: 600;
-  margin-left: -90px;
-  margin-top: -14px;
+.account-balance {
   color: #173764;
+  margin-top: 360px;
+  font-size: 1.7em;
+  width: 140%;
 }
+
+// .approve-field {
+//   padding-bottom: -50px;
+// }
+
+// .approve-button {
+//   margin-bottom: 10px;
+//   margin-right: -10px;
+// }
+
+// .metamask-message {
+//   font-size: 1.1em;
+//   font-weight: 600;
+//   margin-left: -90px;
+//   margin-top: -14px;
+//   color: #173764;
+// }
 
 h1 {
   position: absolute;
@@ -39,22 +48,40 @@ h1 {
   font-family: "Libre Franklin", sans-serif;
 }
 
+.field-with-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirm-button {
+  margin-top: 20px;
+}
+
 .exchange-form {
   position: absolute;
   z-index: 1;
-  margin-top: 285px;
-  margin-left: 355px;
+  display: flex;
+  left: 0;
+  right: 0;
+  margin-top: 410px;
+  margin-right: -150px;
+  padding-left: 120px;
 }
 
-.rates {
-  margin-left: -48px;
+.eth-block, .token-block {
+  width: 200%;
 }
+
+// .rates {
+//   margin-left: -48px;
+// }
 
 .getting-started {
   position: absolute;
   z-index: 1;
-  margin-top: 470px;
-  margin-left: 345px;
+  margin-top: 670px;
+  margin-left: 250px;
   width: 580px;
   color: #173764;
   font-family: "Libre Franklin", sans-serif;
@@ -65,7 +92,7 @@ h1 {
 }
 
 .md-floating-label {
-  color: #5889AF;
+  color: #535f6b;
 }
 
 input[type=number]::-webkit-outer-spin-button,
@@ -78,23 +105,23 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-.md-btn {
-  margin-left: 20px;
-}
+// .md-btn {
+//   margin-left: 20px;
+// }
 
-.md-divider {
-  color: #5889AF !important;
-  width: 110px;  
-}
+// .md-divider {
+//   color: #5889AF !important;
+//   width: 110px;  
+// }
 
 .panel {
   background: transparent;
 }
 
-.prompt {
-  margin-left: 40px;
-  margin-top: -50px;
-}
+// .prompt {
+//   margin-left: 40px;
+//   margin-top: -50px;
+// }
 
 p {
   color: #173764;
@@ -105,31 +132,4 @@ p {
   font-family: "Libre Franklin", sans-serif;
   font-size: 1.2em;
   color: #173764;  
-}
-
-.field-with-button {
-  display: flex;
-}
-
-.confirm-button {
-  margin-top: 36px;
-}
-
-.account-details {
-  display: flex;
-  justify-content: center;
-}
-
-.account-balance {
-  color: #173764;
-  margin-top: 265px;
-  font-size: 1.7em;
-}
-
-.locked {
-  margin-right: -20px;
-}
-
-.unlocked {
-  margin-left: -10px;
 }
