@@ -115,12 +115,13 @@ p {
   margin-top: 36px;
 }
 
+.account-details {
+  display: flex;
+  justify-content: center;
+}
+
 .account-balance {
   color: #173764;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   margin-top: 265px;
   font-size: 1.7em;
 }

@@ -7,7 +7,7 @@ import ERC20 from '../services/ERC20';
 import MarketMaker from '../services/MarketMaker';
 import Metamask from '../services/Metamask';
 import logo from '../../public/ethLogo.png';
-import './App.scss';
+import '../stylesheets/App.scss';
 
 class App extends Component {
   constructor(props) {

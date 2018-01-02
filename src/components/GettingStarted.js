@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ExpansionList, ExpansionPanel, Button, TextField } from 'react-md';
 
 import ERC20 from '../services/ERC20';
-import './App.scss';
+import '../stylesheets/App.scss';
 
 class GettingStarted extends Component {
   constructor(props) {

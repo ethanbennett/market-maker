@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, TextField } from 'react-md';
 
 import MarketMaker from '../services/MarketMaker';
-import './App.scss';
+import '../stylesheets/App.scss';
 
 class ExchangeForm extends Component {
   constructor(props) {

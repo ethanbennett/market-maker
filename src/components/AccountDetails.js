@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.scss';
+import '../stylesheets/App.scss';
 
 class AccountDetails extends Component {
   constructor(props) {
