@@ -107,15 +107,19 @@ h1 {
 .getting-started {
   position: absolute;
   z-index: 1;
+  left: 32%;
   margin-top: 670px;
-  margin-left: 250px;
   width: 580px;
   color: #173764;
   font-family: "Libre Franklin", sans-serif;
 
   @include respond-to(small-desktop) {
+    left: 27%;    
     margin-top: 560px;
-    margin-left: 450px;
+  }
+
+  @include respond-to(desktop) {
+    left: 30%;
   }
 }
 
