@@ -50,11 +50,9 @@ class ExchangeForm extends Component {
   async handleBuy(token) {
     const { accountData, ethValue, tokenValue } = this.state;
 
-    this.validateInput(token);
-
     this.setState({
       result:
-        'Please use MetaMask to confirm your transaction and check its status.',
+        'Please use MetaMask to confirm your transaction and check its status. Refresh the page to see updated account balances.',
     });
 
     if (token === 'eth') {
@@ -62,23 +60,6 @@ class ExchangeForm extends Component {
     } else {
       await MarketMaker.ethToTokens(tokenValue * 10 ** 18, accountData.address);
     }
-  }
-
-  validateInput(token) {
-    const { ethValue } = this.state;
-    let result;
-
-    if (token === 'eth' && ethValue % 1 !== 0) {
-      result =
-        'Please use whole numbers; partial token sales are not yet supported.';
-    } else {
-      result =
-        'Please use MetaMask to confirm your transaction and check its status.';
-    }
-
-    this.setState({
-      result: result,
-    });
   }
 
   setEthRate(value) {
@@ -223,7 +204,9 @@ class ExchangeForm extends Component {
           </div>
           <div className="rates">{this.renderTokenRates()}</div>
         </div>
-        <p className="metamask-message">{result}</p>
+        <div className="flash-message">
+          <p className="metamask-message">{result}</p>
+        </div>
       </div>
     );
   }

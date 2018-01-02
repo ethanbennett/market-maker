@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Libre+Franklin');
+@import 'mixins';
 
 .App {
   text-align: center;
@@ -16,6 +17,12 @@ img {
   // width: 20%;
   width: 40%;
   margin-top: 50px;
+
+  @include respond-to(small-desktop) {
+    margin-top: 20px;
+    width: 20%;
+    margin-left: -135px;
+  }
 }
 
 .account-balance {
@@ -23,6 +30,11 @@ img {
   margin-top: 360px;
   font-size: 1.7em;
   width: 140%;
+
+  @include respond-to(small-desktop) {
+    width: 100%;
+    margin-top: 320px;
+  }
 }
 
 // .approve-field {
@@ -34,13 +46,18 @@ img {
 //   margin-right: -10px;
 // }
 
-// .metamask-message {
-//   font-size: 1.1em;
-//   font-weight: 600;
-//   margin-left: -90px;
-//   margin-top: -14px;
-//   color: #173764;
-// }
+.metamask-message {
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-left: -750px;
+  margin-top: 190px;
+  color: #173764;
+
+  @include respond-to(small-desktop) {
+    margin-left: -1000px;
+    margin-top: 170px;
+  }
+}
 
 h1 {
   position: absolute;
@@ -67,14 +84,24 @@ h1 {
   margin-top: 410px;
   margin-right: -150px;
   padding-left: 120px;
+
+  @include respond-to(small-desktop) {
+    padding-left: 0px;
+    margin-right: 0px;
+    margin-top: 355px;
+    left: 20%;
+    right: 20%;
+  }
 }
 
 .eth-block, .token-block {
   width: 200%;
 }
 
-// .rates {
-//   margin-left: -48px;
+// .eth-block {
+//   @include respond-to(small-desktop) {
+//     margin-left: 50px;
+//   }
 // }
 
 .getting-started {
@@ -85,6 +112,11 @@ h1 {
   width: 580px;
   color: #173764;
   font-family: "Libre Franklin", sans-serif;
+
+  @include respond-to(small-desktop) {
+    margin-top: 560px;
+    margin-left: 450px;
+  }
 }
 
 .material-icons {
@@ -104,10 +136,6 @@ input[type=number]::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
-
-// .md-btn {
-//   margin-left: 20px;
-// }
 
 // .md-divider {
 //   color: #5889AF !important;
