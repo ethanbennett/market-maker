@@ -126,7 +126,6 @@ h1 {
 
 .prompt {
   left: 0;
-  
   @include respond-to(small-desktop) {
     left: 4%;
     width: 100%;
