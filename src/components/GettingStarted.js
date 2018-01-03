@@ -31,7 +31,8 @@ class GettingStarted extends Component {
         >
           <p>
             Panda Exchange interacts with a market maker smart contract that was
-            written in Viper and deployed on the Rinkeby test network. Click
+            written in Viper and deployed on the Rinkeby test network. The
+            prices are dynamic; start typing to see the current rate. Click
             below to allow the contract to exchange tokens on your behalf. If
             your transaction fails, you likely need to approve again to allow
             for more transactions.

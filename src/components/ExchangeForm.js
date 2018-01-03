@@ -50,11 +50,6 @@ class ExchangeForm extends Component {
   async handleBuy(token) {
     const { accountData, ethValue, tokenValue } = this.state;
 
-    this.setState({
-      result:
-        'Please use MetaMask to confirm your transaction and check its status. Refresh the page to see updated account balances.',
-    });
-
     if (token === 'eth') {
       await MarketMaker.tokensToEth(ethValue, accountData.address);
     } else {
@@ -158,7 +153,7 @@ class ExchangeForm extends Component {
   }
 
   render() {
-    const { accountData, result } = this.state;
+    const { accountData } = this.state;
 
     return (
       <div className="exchange-form">
@@ -203,9 +198,6 @@ class ExchangeForm extends Component {
             </Button>
           </div>
           <div className="rates">{this.renderTokenRates()}</div>
-        </div>
-        <div className="flash-message">
-          <p className="metamask-message">{result}</p>
         </div>
       </div>
     );
