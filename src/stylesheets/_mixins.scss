@@ -1,12 +1,18 @@
 $screen-size-tablet: '768px';
-$screen-size-small-desktop: '1280px';
+$screen-size-big-tablet: '900px';
+$screen-size-small-desktop: '1070px';
+$screen-size-medium-desktop: '1280px';
 $screen-size-desktop: '1440px';
 
 @mixin respond-to($media) {
   @if $media == tablet {
     @media (min-width: $screen-size-tablet) { @content; }
+  } @else if $media == big-tablet {
+    @media (min-width: $screen-size-big-tablet) { @content; }
   } @else if $media == small-desktop {
     @media (min-width: $screen-size-small-desktop) { @content; }
+  } @else if $media == medium-desktop {
+    @media (min-width: $screen-size-medium-desktop) { @content; }
   } @else if $media == desktop {
     @media (min-width: $screen-size-desktop) { @content; }
   }
