@@ -36,12 +36,21 @@ class ExchangeForm extends Component {
   }
 
   updateForms(value, form) {
+    const { totalEth, totalTokens } = this.state.marketState;
+
     if (form === 'eth') {
-      this.setState({ ethValue: value });
-      this.setEthRate(parseFloat(value, 10));
+      const rate = this.calcuRate(parseFloat(value, 10), totalTokens, totalEth);
+      this.setState({
+        ethValue: value,
+        netEth: rate,
+      });
     } else if (form === 'token') {
-      this.setState({ tokenValue: value });
-      this.setTokenRate(parseFloat(value));
+      const rate = this.calcuRate(parseFloat(value), totalEth, totalTokens);
+      this.setState({
+        tokenValue: value,
+        netTokens: rate,
+        fee: value / 500,
+      });
     }
   }
 
@@ -55,46 +64,19 @@ class ExchangeForm extends Component {
     }
   }
 
-  setEthRate(value) {
-    const { invariant, totalTokens, totalEth } = this.state.marketState;
-    const newTotalEth = invariant / (totalTokens + value);
-    const netEth = totalEth - newTotalEth;
+  calcuRate(value, firstTotal, secondTotal) {
+    const { invariant } = this.state.marketState;
+    const newTotal = invariant / (firstTotal + value);
+    const net = secondTotal - newTotal;
 
-    return this.setState({ netEth: netEth.toFixed(4) });
-  }
-
-  setTokenRate(value) {
-    const { invariant, totalTokens, totalEth } = this.state.marketState;
-    const newTotalTokens = invariant / (totalEth + value);
-    const netTokens = totalTokens - newTotalTokens;
-    const fee = value / 500;
-
-    return this.setState({ fee: fee, netTokens: netTokens.toFixed(4) });
+    return net.toFixed(4);
   }
 
   renderEthRates() {
-    let netEth;
-    let invariant;
-    let totalEth;
     const { marketState } = this.state;
-
-    if (isNaN(this.state.netEth)) {
-      netEth = 0;
-    } else {
-      netEth = this.state.netEth;
-    }
-
-    if (isNaN(marketState.invariant)) {
-      invariant = 0;
-    } else {
-      invariant = marketState.invariant;
-    }
-
-    if (isNaN(marketState.totalEth)) {
-      totalEth = 0;
-    } else {
-      totalEth = marketState.totalEth;
-    }
+    const netEth = this.filterNaN(this.state.netEth);
+    const totalEth = this.filterNaN(marketState.totalEth);
+    const invariant = this.filterNaN(marketState.invariant);
 
     return (
       <div className="rates">
@@ -112,28 +94,9 @@ class ExchangeForm extends Component {
   }
 
   renderTokenRates() {
-    let netTokens;
-    let fee;
-    let totalTokens;
-    const { marketState } = this.state;
-
-    if (isNaN(this.state.netTokens)) {
-      netTokens = 0;
-    } else {
-      netTokens = this.state.netTokens;
-    }
-
-    if (isNaN(this.state.fee)) {
-      fee = 0;
-    } else {
-      fee = this.state.fee;
-    }
-
-    if (isNaN(marketState.totalTokens)) {
-      totalTokens = 0;
-    } else {
-      totalTokens = marketState.totalTokens;
-    }
+    const netTokens = this.filterNaN(this.state.netTokens);
+    const fee = this.filterNaN(this.state.fee);
+    const totalTokens = this.filterNaN(this.state.marketState.totalTokens);
 
     return (
       <div className="rates">
@@ -148,6 +111,14 @@ class ExchangeForm extends Component {
         </p>
       </div>
     );
+  }
+
+  filterNaN(value) {
+    if (isNaN(value)) {
+      return 0;
+    } else {
+      return value;
+    }
   }
 
   render() {
