@@ -125,10 +125,13 @@ h1 {
 }
 
 .prompt {
-  left: 0;
+  width: auto;
+  margin: auto;
+  top: 18%;
+  text-align: center;
+
   @include respond-to(small-desktop) {
     left: 4%;
-    width: 100%;
   }
 
   @include respond-to(desktop) {

@@ -25,8 +25,6 @@ class ExchangeForm extends Component {
     };
   }
 
-  // Add flash message timer
-
   componentWillReceiveProps(nextProps) {
     if (this.props.accountData !== nextProps.accountData) {
       this.setState({ accountData: nextProps.accountData });
@@ -40,10 +38,10 @@ class ExchangeForm extends Component {
   updateForms(value, form) {
     if (form === 'eth') {
       this.setState({ ethValue: value });
-      this.setEthRate(value);
+      this.setEthRate(parseFloat(value, 10));
     } else if (form === 'token') {
       this.setState({ tokenValue: value });
-      this.setTokenRate(value);
+      this.setTokenRate(parseFloat(value));
     }
   }
 
@@ -58,6 +56,10 @@ class ExchangeForm extends Component {
   }
 
   setEthRate(value) {
+    if (value.toString().length === 1 && value === 0) {
+      return;
+    }
+
     const { invariant, totalTokens, totalEth } = this.state.marketState;
     const newTotalEth = invariant / (totalTokens + value);
     const netEth = totalEth - newTotalEth;
@@ -66,6 +68,12 @@ class ExchangeForm extends Component {
   }
 
   setTokenRate(value) {
+    console.log(value);
+
+    if (value.toString().length === 1 && value === 0) {
+      return;
+    }
+
     const { invariant, totalTokens, totalEth } = this.state.marketState;
     const newTotalTokens = invariant / (totalEth + value);
     const netTokens = totalTokens - newTotalTokens;
@@ -163,7 +171,7 @@ class ExchangeForm extends Component {
               id="eth"
               type="number"
               label="Amount in POLY"
-              onChange={value => this.updateForms(parseInt(value, 10), 'eth')}
+              onChange={value => this.updateForms(value, 'eth')}
               className="md-cell md-cell--bottom"
             />
             <Button
@@ -184,7 +192,7 @@ class ExchangeForm extends Component {
               id="token"
               type="number"
               label="Amount in ETH"
-              onChange={value => this.updateForms(parseInt(value, 10), 'token')}
+              onChange={value => this.updateForms(value, 'token')}
               className="md-cell md-cell--bottom"
             />
             <Button
