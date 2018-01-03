@@ -33,6 +33,7 @@ img {
 
   @include respond-to(desktop) {
     margin-top: 15px;
+    width: 250px;
   }
 }
 
