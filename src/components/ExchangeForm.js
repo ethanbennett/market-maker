@@ -56,10 +56,6 @@ class ExchangeForm extends Component {
   }
 
   setEthRate(value) {
-    if (value.toString().length === 1 && value === 0) {
-      return;
-    }
-
     const { invariant, totalTokens, totalEth } = this.state.marketState;
     const newTotalEth = invariant / (totalTokens + value);
     const netEth = totalEth - newTotalEth;
@@ -68,12 +64,6 @@ class ExchangeForm extends Component {
   }
 
   setTokenRate(value) {
-    console.log(value);
-
-    if (value.toString().length === 1 && value === 0) {
-      return;
-    }
-
     const { invariant, totalTokens, totalEth } = this.state.marketState;
     const newTotalTokens = invariant / (totalEth + value);
     const netTokens = totalTokens - newTotalTokens;
