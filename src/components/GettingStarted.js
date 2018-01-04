@@ -43,6 +43,7 @@ class GettingStarted extends Component {
             raised
             primary
             className="approve-button"
+            disabled={!accountData.onRinkeby}
             onClick={() => ERC20.approve(accountData.address)}
           >
             Allow Panda to Buy and Sell Tokens
