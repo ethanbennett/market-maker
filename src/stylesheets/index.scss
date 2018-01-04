@@ -1,7 +1,7 @@
 @import '~react-md/src/scss/react-md';
 
 $md-primary-color: #173764;
-$md-secondary-color: #5889AF;
+$md-secondary-color: #455e83;
 
 @include react-md-everything;
 
@@ -15,7 +15,6 @@ body {
 }
 
 svg {
-  // display: none;
   z-index: 0;
   width: 100%;
   height: 100%;
