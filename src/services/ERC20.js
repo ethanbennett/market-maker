@@ -15,7 +15,11 @@ class ERC20 {
   }
 
   async getTokenBalance(address) {
-    return await erc20Contract.methods.balanceOf(address).call();
+    try {
+      return await erc20Contract.methods.balanceOf(address).call();
+    } catch (error) {
+      return error;
+    }
   }
 }
 

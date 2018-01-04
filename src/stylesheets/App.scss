@@ -131,7 +131,7 @@ h1 {
   text-align: center;
 
   @include respond-to(small-desktop) {
-    left: 4%;
+    left: 3.5%;
   }
 
   @include respond-to(desktop) {
