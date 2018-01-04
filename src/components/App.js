@@ -20,6 +20,13 @@ class App extends Component {
   }
 
   async componentWillMount() {
+    const accountData = await this.compileAccountData();
+    const marketState = await this.compileMarketState(accountData.onRinkeby);
+
+    this.setState({ accountData: accountData, marketState: marketState });
+  }
+
+  async compileAccountData() {
     let ethBalance;
     let tokenBalance;
     const address = await Metamask.setAccount();
@@ -30,6 +37,15 @@ class App extends Component {
       tokenBalance = await ERC20.getTokenBalance(address);
     }
 
+    return {
+      address: address,
+      onRinkeby: onRinkeby,
+      ethBalance: ethBalance,
+      tokenBalance: tokenBalance,
+    };
+  }
+
+  async compileMarketState(onRinkeby) {
     let invariant;
     let totalEth;
     let totalTokens;
@@ -40,19 +56,11 @@ class App extends Component {
       totalTokens = await MarketMaker.getTotalTokenQuantity();
     }
 
-    this.setState({
-      accountData: {
-        address: address,
-        onRinkeby: onRinkeby,
-        ethBalance: ethBalance,
-        tokenBalance: tokenBalance,
-      },
-      marketState: {
-        invariant: this.convertData(invariant),
-        totalEth: this.convertData(totalEth),
-        totalTokens: parseFloat(totalTokens, 10),
-      },
-    });
+    return {
+      invariant: this.convertData(invariant),
+      totalEth: this.convertData(totalEth),
+      totalTokens: parseInt(totalTokens, 10),
+    };
   }
 
   convertData(number) {
