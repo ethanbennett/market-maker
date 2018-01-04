@@ -222,7 +222,7 @@ const erc20ABI = [
   },
 ];
 
-export const erc20Address = '0x94DF6b42763B2BE323eB2FbB315e3dA5871f8e78';
+const erc20Address = '0x94DF6b42763B2BE323eB2FbB315e3dA5871f8e78';
 
 export let erc20Contract;
 
@@ -230,4 +230,4 @@ if (w3) {
   erc20Contract = new w3.eth.Contract(erc20ABI, erc20Address);
 }
 
-export default { erc20Address, erc20Contract };
+export default erc20Contract;

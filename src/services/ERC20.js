@@ -6,16 +6,18 @@ class ERC20 {
     try {
       return await erc20Contract.methods
         .approve(marketMakerAddress, 2 * 10 ** 18)
-        .send({ from: userAddress }, function(error, txHash) {
-          console.log({ txHash: txHash, error: error });
-        });
+        .send({ from: userAddress });
     } catch (error) {
       return error;
     }
   }
 
   async getTokenBalance(address) {
-    return await erc20Contract.methods.balanceOf(address).call();
+    try {
+      return await erc20Contract.methods.balanceOf(address).call();
+    } catch (error) {
+      return error;
+    }
   }
 }
 

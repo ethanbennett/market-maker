@@ -6,7 +6,7 @@ class Metamask {
       const addresses = await w3.eth.getAccounts();
       return addresses[0];
     } catch (error) {
-      console.log(error);
+      return error;
     }
   }
 
@@ -19,7 +19,7 @@ class Metamask {
         return false;
       }
     } catch (error) {
-      console.log(error);
+      return error;
     }
   }
 
@@ -29,7 +29,7 @@ class Metamask {
       const valueInEth = balance / 10 ** 18;
       return Math.round(valueInEth * 10000) / 10000;
     } catch (error) {
-      console.log(error);
+      return error;
     }
   }
 }
