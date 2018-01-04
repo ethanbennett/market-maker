@@ -54,13 +54,13 @@ class ExchangeForm extends Component {
     }
   }
 
-  async handleBuy(token) {
+  handleBuy(token) {
     const { accountData, ethValue, tokenValue } = this.state;
 
     if (token === 'eth') {
-      await MarketMaker.tokensToEth(ethValue, accountData.address);
+      MarketMaker.tokensToEth(ethValue, accountData.address);
     } else {
-      await MarketMaker.ethToTokens(tokenValue * 10 ** 18, accountData.address);
+      MarketMaker.ethToTokens(tokenValue * 10 ** 18, accountData.address);
     }
   }
 
