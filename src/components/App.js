@@ -9,7 +9,7 @@ import Metamask from '../services/Metamask';
 import logo from '../../public/ethLogo.png';
 import '../stylesheets/App.scss';
 
-class App extends Component {
+export class App extends Component {
   constructor(props) {
     super(props);
 
@@ -75,7 +75,7 @@ class App extends Component {
         <img className="eth-logo" src={logo} alt="ethereum" />
         <AccountDetails accountData={accountData} />
         <ExchangeForm accountData={accountData} marketState={marketState} />
-        <GettingStarted accountData={accountData} />
+        <GettingStarted />
       </div>
     );
   }

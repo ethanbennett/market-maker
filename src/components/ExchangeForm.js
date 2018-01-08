@@ -5,7 +5,7 @@ import MarketMaker from '../services/MarketMaker';
 import ERC20 from '../services/ERC20';
 import '../stylesheets/App.scss';
 
-class ExchangeForm extends Component {
+export class ExchangeForm extends Component {
   constructor(props) {
     super(props);
 

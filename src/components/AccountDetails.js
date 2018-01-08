@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../stylesheets/App.scss';
 
-class AccountDetails extends Component {
+export class AccountDetails extends Component {
   constructor(props) {
     super(props);
 
