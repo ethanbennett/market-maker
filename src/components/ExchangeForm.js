@@ -3,6 +3,7 @@ import { Button, TextField } from 'react-md';
 
 import MarketMaker from '../services/MarketMaker';
 import ERC20 from '../services/ERC20';
+import filterNaN from '../utils/dataUtils';
 import '../stylesheets/App.scss';
 
 export class ExchangeForm extends Component {
@@ -76,9 +77,9 @@ export class ExchangeForm extends Component {
 
   renderEthRates() {
     const { marketState } = this.state;
-    const netEth = this.filterNaN(this.state.netEth);
-    const totalEth = this.filterNaN(marketState.totalEth);
-    const invariant = this.filterNaN(marketState.invariant);
+    const netEth = filterNaN(this.state.netEth);
+    const totalEth = filterNaN(marketState.totalEth);
+    const invariant = filterNaN(marketState.invariant);
 
     return (
       <div className="rates">
@@ -96,9 +97,9 @@ export class ExchangeForm extends Component {
   }
 
   renderTokenRates() {
-    const netTokens = this.filterNaN(this.state.netTokens);
-    const fee = this.filterNaN(this.state.fee);
-    const totalTokens = this.filterNaN(this.state.marketState.totalTokens);
+    const netTokens = filterNaN(this.state.netTokens);
+    const fee = filterNaN(this.state.fee);
+    const totalTokens = filterNaN(this.state.marketState.totalTokens);
 
     return (
       <div className="rates">
@@ -113,14 +114,6 @@ export class ExchangeForm extends Component {
         </p>
       </div>
     );
-  }
-
-  filterNaN(value) {
-    if (isNaN(value)) {
-      return 0;
-    } else {
-      return value;
-    }
   }
 
   renderEthButtons() {
