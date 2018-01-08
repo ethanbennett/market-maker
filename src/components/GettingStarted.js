@@ -34,20 +34,26 @@ class GettingStarted extends Component {
             written in Viper and deployed to the Rinkeby test network. The
             prices are dynamic; just start typing to see the current rate.<br />
             <br />
-            Click below to allow the contract to exchange tokens on your behalf.
-            If your transaction fails, you likely need to click this button
-            again to allow for more transactions.
+            <strong>Note:</strong> If you're selling POLY for ETH, you'll first
+            have to click the "approve" button to allow the market maker
+            contract to collect ETH from the token contract on your behalf.
+            You'll then see the option to buy ETH.<br />
+            <br />
+            Special thanks to Vitalik, who built the market maker{' '}
+            <a
+              target="_blank"
+              href="https://github.com/ethereum/vyper/blob/master/examples/market_maker/on_chain_market_maker.v.py"
+            >
+              here
+            </a>. You can also check out the code for the front end{' '}
+            <a
+              target="_blank"
+              href="https://github.com/ethanbennett/market-maker"
+            >
+              here
+            </a>.
           </p>
           <br />
-          <Button
-            raised
-            primary
-            className="approve-button"
-            disabled={!accountData.onRinkeby}
-            onClick={() => ERC20.approve(accountData.address)}
-          >
-            Allow Panda to Buy and Sell Tokens
-          </Button>
         </ExpansionPanel>
       </ExpansionList>
     );

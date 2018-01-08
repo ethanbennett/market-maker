@@ -69,6 +69,24 @@ h1 {
   margin-top: 20px;
 }
 
+.approve-button {
+  margin-top: 20px;
+  width: 245px;
+
+  @include respond-to(big-tablet) {
+    width: 324px;
+    margin-left: 15px;
+  }
+  
+  @include respond-to(small-desktop) {
+    width: 250px;
+  }
+}
+
+.buy-eth {
+  background-color: #176444;
+}
+
 .exchange-form {
   position: absolute;
   z-index: 1;
@@ -76,15 +94,20 @@ h1 {
   left: 0;
   right: 0;
   margin-top: 410px;
-  margin-right: -150px;
-  padding-left: 120px;
+  margin-right: -190px;
+  padding-left: 140px;
 
   @include respond-to(big-tablet) {
     padding-left: 0px;
     margin-right: 0px;
     margin-top: 355px;
-    left: 20%;
-    right: 20%;
+    left: 19%;
+    right: 18%;
+  }
+
+  @include respond-to(small-desktop) {
+    left: 23%;
+    right: 19%;
   }
 }
 

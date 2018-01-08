@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, TextField } from 'react-md';
 
 import MarketMaker from '../services/MarketMaker';
+import ERC20 from '../services/ERC20';
 import '../stylesheets/App.scss';
 
 class ExchangeForm extends Component {
@@ -22,6 +23,7 @@ class ExchangeForm extends Component {
       fee: 0,
       netEth: 0,
       netTokens: 0,
+      approved: false,
     };
   }
 
@@ -121,6 +123,46 @@ class ExchangeForm extends Component {
     }
   }
 
+  renderEthButtons() {
+    const { accountData, approved } = this.state;
+
+    if (!approved) {
+      return (
+        <Button
+          id="approve"
+          className="approve-button"
+          disabled={!accountData.onRinkeby || !accountData.address}
+          onClick={() => this.handleApproval()}
+          raised
+          primary
+        >
+          Approve Eth Purchase
+        </Button>
+      );
+    } else {
+      return (
+        <Button
+          raised
+          primary
+          className="confirm-button buy-eth"
+          disabled={!accountData.onRinkeby || !accountData.address}
+          onClick={() => this.handleBuy('eth')}
+        >
+          Buy Eth
+        </Button>
+      );
+    }
+  }
+
+  handleApproval() {
+    const { accountData, ethValue } = this.state;
+    return ERC20.approve(accountData.address, ethValue, this.approvalCallback);
+  }
+
+  approvalCallback = () => {
+    return this.setState({ approved: true });
+  };
+
   render() {
     const { accountData } = this.state;
 
@@ -135,15 +177,7 @@ class ExchangeForm extends Component {
               onChange={value => this.updateForms(value, 'eth')}
               className="md-cell md-cell--bottom"
             />
-            <Button
-              raised
-              primary
-              className="confirm-button"
-              disabled={!accountData.onRinkeby || !accountData.address}
-              onClick={() => this.handleBuy('eth')}
-            >
-              Buy Eth
-            </Button>
+            {this.renderEthButtons()}
           </div>
           <div className="rates">{this.renderEthRates()}</div>
         </div>
