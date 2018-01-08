@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../stylesheets/App.scss';
 
-class MetamaskPrompt extends Component {
+export class MetamaskPrompt extends Component {
   render() {
     return (
       <h1 className="account-balance prompt">
