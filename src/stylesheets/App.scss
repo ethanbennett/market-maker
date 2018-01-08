@@ -53,6 +53,14 @@ img {
   }
 }
 
+.wrong-network {
+  margin-left: 10px;
+}
+
+.locked {
+  margin-left: 10px;
+}
+
 h1 {
   position: absolute;
   z-index: 1;
@@ -108,6 +116,19 @@ h1 {
   @include respond-to(small-desktop) {
     left: 23%;
     right: 19%;
+  }
+}
+
+.skinny {
+  margin-right: -150px;
+  padding-left: 120px;
+
+  @include respond-to(big-tablet) {
+    padding-left: 0px;
+    margin-right: 0px;
+    margin-top: 355px;
+    left: 20%;
+    right: 20%;
   }
 }
 

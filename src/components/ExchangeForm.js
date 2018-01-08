@@ -163,11 +163,19 @@ class ExchangeForm extends Component {
     return this.setState({ approved: true });
   };
 
+  generateFormClass() {
+    if (!this.state.approved) {
+      return 'exchange-form';
+    } else {
+      return 'exchange-form skinny';
+    }
+  }
+
   render() {
     const { accountData } = this.state;
 
     return (
-      <div className="exchange-form">
+      <div className={this.generateFormClass()}>
         <div className="eth-block">
           <div className="field-with-button">
             <TextField

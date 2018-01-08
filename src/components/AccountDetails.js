@@ -36,7 +36,7 @@ class AccountDetails extends Component {
       );
     } else {
       return (
-        <h1 className="account-balance">
+        <h1 className="account-balance wrong-network">
           Please connect MetaMask to the Rinkeby network to continue.
         </h1>
       );
