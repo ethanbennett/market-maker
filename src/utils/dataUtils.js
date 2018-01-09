@@ -1,3 +1,7 @@
+export function convertData(number) {
+  return number / 10 ** 18;
+}
+
 export function filterNaN(value) {
   if (isNaN(value)) {
     return 0;
@@ -6,4 +10,4 @@ export function filterNaN(value) {
   }
 }
 
-export default filterNaN;
+export default { convertData, filterNaN };

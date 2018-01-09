@@ -3,7 +3,7 @@ import { Button, TextField } from 'react-md';
 
 import MarketMaker from '../services/MarketMaker';
 import ERC20 from '../services/ERC20';
-import filterNaN from '../utils/dataUtils';
+import { filterNaN } from '../utils/dataUtils';
 import '../stylesheets/App.scss';
 
 export class ExchangeForm extends Component {

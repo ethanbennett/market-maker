@@ -6,6 +6,7 @@ import GettingStarted from './GettingStarted';
 import ERC20 from '../services/ERC20';
 import MarketMaker from '../services/MarketMaker';
 import Metamask from '../services/Metamask';
+import { convertData } from '../utils/dataUtils';
 import logo from '../../public/ethLogo.png';
 import '../stylesheets/App.scss';
 
@@ -57,14 +58,10 @@ export class App extends Component {
     }
 
     return {
-      invariant: this.convertData(invariant),
-      totalEth: this.convertData(totalEth),
+      invariant: convertData(invariant),
+      totalEth: convertData(totalEth),
       totalTokens: parseInt(totalTokens, 10),
     };
-  }
-
-  convertData(number) {
-    return number / 10 ** 18;
   }
 
   render() {
