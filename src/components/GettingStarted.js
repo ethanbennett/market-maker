@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { ExpansionList, ExpansionPanel, Button } from 'react-md';
+import { ExpansionList, ExpansionPanel } from 'react-md';
 
-import ERC20 from '../services/ERC20';
 import '../stylesheets/App.scss';
 
 export class GettingStarted extends Component {
