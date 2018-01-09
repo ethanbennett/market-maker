@@ -23,19 +23,7 @@ export class GettingStarted extends Component {
             contract to collect ETH from the (ERC20) token contract on your
             behalf. You'll then see the option to buy ETH.<br />
             <br />
-            Special thanks to Vitalik, who built{' '}
-            <a
-              target="_blank"
-              href="https://github.com/ethereum/vyper/blob/master/examples/market_maker/on_chain_market_maker.v.py"
-            >
-              the market maker
-            </a>. You can also check out the code for the front end{' '}
-            <a
-              target="_blank"
-              href="https://github.com/ethanbennett/market-maker"
-            >
-              here
-            </a>.
+            Special thanks to Vitalik for building the market maker!
           </p>
           <br />
         </ExpansionPanel>
